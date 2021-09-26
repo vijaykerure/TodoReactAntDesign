@@ -4,7 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 const { confirm } = Modal;
 
-const AddTodo = ({ addTodo, setTodos }) => {
+const TodoActions = ({ addTodo, setTodos }) => {
     const [todo, setTodo] = useState("");
     
     const resetTodo = () => {
@@ -39,4 +39,4 @@ const AddTodo = ({ addTodo, setTodos }) => {
     );
 }
 
-export default AddTodo;
+export default TodoActions;

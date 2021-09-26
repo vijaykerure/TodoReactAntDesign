@@ -38,7 +38,9 @@ const BuildSteps = () => {
             return <Step key={ step.key } title={ step.title }/>
           })}
         </Steps>
+
         <div className="steps-content">{steps[current].content}</div>
+        
         <Divider />
     </>
   );

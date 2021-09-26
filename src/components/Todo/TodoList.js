@@ -1,10 +1,10 @@
-import { Popconfirm, Checkbox, List, Button } from "antd";
+import { Empty , Popconfirm, Checkbox, List, Button } from "antd";
 import { DeleteOutlined } from '@ant-design/icons';
 
 const TodoList = ({ todos = [], setTodos }) => {
 
     if (todos.length === 0) {
-        return <>Empty List</>
+        return <Empty />;
     };
 
     const toggleTodo = index => {
