@@ -1,7 +1,7 @@
 
 import { Steps, Divider } from 'antd';
 import { useState } from 'react';
-import PersonalInformation from './PersonalInformation';
+import TodoApp from './Todo';
 import '../App.css';
 
 const { Step } = Steps;
@@ -10,7 +10,7 @@ const steps = [
   {
     key: 1,
     title: 'Todo',
-    content: <PersonalInformation />,
+    content: <TodoApp />,
   },
   // {
   //   key: 2,
@@ -27,13 +27,9 @@ const steps = [
 const BuildSteps = () => {
   const [ current, setCurrent ] = useState(0);
 
-  const onChange = current => {
-    setCurrent(current);
-  }
-
   return (
     <>
-        <Steps current={current} onChange={onChange} size="default">
+        <Steps current={current} onChange={ current => setCurrent(current)} size="default">
           {steps.map( step => {
             return <Step key={ step.key } title={ step.title }/>
           })}

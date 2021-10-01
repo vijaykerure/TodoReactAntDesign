@@ -1,42 +1,39 @@
-import { Empty , Popconfirm, Checkbox, List, Button } from "antd";
+import { Empty, Popconfirm, Checkbox, List, Button, Skeleton } from "antd";
 import { DeleteOutlined } from '@ant-design/icons';
 
-const TodoList = ({ todos = [], setTodos }) => {
+const TodoList = ({ loading, todos = [], onDelete, onToggle }) => {
 
-    if (todos.length === 0) {
-        return <Empty />;
-    };
+  if (todos.length === 0) {
+    return <> <Empty /> </>;
+  };
 
-    const toggleTodo = index => {
-        setTodos( todos.map( (todo, i) => index === i ? { ...todo, completed: !todo.completed } : todo ) );
-    }
-
-    const deleteTodo = index => {
-        setTodos( todos.filter( (todo, i) => index === i ? false: todo ) );
-    }
-
-    return (
-       
+  return (
+    <>
+      <Skeleton loading={loading} active>
         <List
-            bordered
-            dataSource={ todos }
-            renderItem={ ({ completed, key, text }, i) => (
-                <List.Item>
-                    <Checkbox style={ completed ? { textDecoration: "line-through" } : {} } checked={ completed } key={ key } onClick={ () => toggleTodo(i) }> { text } </Checkbox>
-                   
-                    <Popconfirm
-                        title="Are you sure to delete this task?"
-                        onConfirm={ () => deleteTodo(i) }
-                        okText="Yes"
-                        cancelText="No"
-                    >
-                
-                    <Button type="primary" danger icon={<DeleteOutlined />} />
-                    </Popconfirm>
-                </List.Item>                
-            )}
+          bordered
+          dataSource={todos}
+          renderItem={({ completed, text, id }) => (
+
+            <List.Item>
+              <Checkbox style={completed ? { textDecoration: "line-through" } : {}} checked={completed} key={id} onClick={() => onToggle(id)} > {text} </Checkbox>
+
+              <Popconfirm
+                title="Are you sure to delete this task?"
+                onConfirm={() => onDelete(id)}
+                okText="Yes"
+                cancelText="No"
+              >
+
+                <Button type="primary" danger icon={<DeleteOutlined />} />
+              </Popconfirm>
+
+            </List.Item>
+          )}
         />
-    );
+      </Skeleton>
+    </>
+  );
 }
 
 export default TodoList;
