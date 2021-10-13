@@ -1,8 +1,13 @@
 
 import { Steps, Divider } from 'antd';
 import { useState } from 'react';
-import TodoApp from './Todo';
-import '../App.css';
+import { Layout } from 'antd';
+
+// import TodoApp from './Todo';
+import TodoApp from './TodoRedux';
+import './App.css';
+
+const { Header, Footer, Content } = Layout;
 
 const { Step } = Steps;
 
@@ -42,8 +47,22 @@ const BuildSteps = () => {
   );
 };
 
+function App() {
+  return (
+    <Layout style={{ minHeight: "100vh" }}>
+      <Header >Header</Header>
+      <Content style={{
+        padding: 24,
+        margin: 0,
+        minHeight: 280,
+        background: '#fff',
+      }}>
+       
+      <BuildSteps />
+      </Content>
+      <Footer >Footer</Footer>
+    </Layout>
+  );
+}
 
-export default BuildSteps;
-
-
-
+export default App;
